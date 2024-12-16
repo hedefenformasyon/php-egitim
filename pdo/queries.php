@@ -12,9 +12,16 @@ try {
     $query->execute();*/
 
     //update
-    $query = $pdo->prepare("UPDATE users SET name= 'Misafir' WHERE age > 35");
-    $query->execute();
-    echo "İşlem başarılı<br>";
+    /*$query = $pdo->prepare("UPDATE users SET name= 'Misafir' WHERE age > 35");
+    $query->execute();*/
+
+
+    $stmt = $pdo->prepare("SELECT * FROM users where id = :id");
+    $stmt->bindValue(':id',1,PDO::PARAM_INT);
+    $stmt->execute([':id' => 1]);
+
+    $user = $stmt->fetch();
+    print_r($user);
 } catch (PDOException $th) {
     echo "Hata : ". $th->getMessage();
 }

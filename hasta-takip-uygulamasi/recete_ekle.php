@@ -14,7 +14,7 @@ include 'connect.php';
         <input type="text" name="tur" placeholder="Tür">
         <input type="date" name="tarih" placeholder="Tarih">
 
-        <select name="doktor_id">
+        <select name="doktor_id" style="display:none;">
             <option value="">Seçiniz</option>
             <?php 
                 $query = $pdo->prepare("SELECT * FROM doktorlar");
@@ -26,7 +26,7 @@ include 'connect.php';
             ?>
         </select>
 
-        <select name="klinik_id">
+        <select name="klinik_id" style="display:none;">
             <option value="">Seçiniz</option>
             <?php 
                 $query = $pdo->prepare("SELECT * FROM klinikler");

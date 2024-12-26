@@ -21,7 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome'); });
 
-Route::get('/klinikler',[KlinikController::class , 'index'])->name('klinik.index');
+Route::get('/klinikler/ekle',[KlinikController::class , 'add'])->name('klinik.add');
+Route::post('/klinikler/ekle-post',[KlinikController::class , 'ekle'])->name('klinik.ekle');
+
+Route::get('/klinikler/sil/{id}',[KlinikController::class , 'sil'])->name('klinik.sil');
+Route::post('/klinikler/sil-post',[KlinikController::class , 'sil_post'])->name('klinik.sil_post');
+
+Route::get('/klinikler/guncelle/{id}',[KlinikController::class , 'guncelle'])->name('klinik.guncelle');
+Route::post('/klinikler/guncelle-post',[KlinikController::class , 'guncelle_post'])->name('klinik.guncelle_post');
+
+Route::get('/klinikler/{success?}',[KlinikController::class , 'index'])->name('klinik.index');
+
+
 Route::get('/doktorlar',[DoktorController::class , 'index'])->name('doktor.index');
 Route::get('/ilaclar',[IlacController::class , 'index'])->name('ilac.index');
 Route::get('/hastalar',[HastaController::class , 'index'])->name('hasta.index');

@@ -9,6 +9,15 @@
 
 <body>
     <p id="metin"></p>
+
+
+    <input type="text" id="name" placeholder="İsim Giriniz">
+
+
+    <form action="/" id="form">
+        <input type="text" name="name">
+        <button type="submit">Gönder</button>
+    </form>
     <script>
         let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -28,6 +37,29 @@
 
         console.log("Sonuçları: ", numbers);
         document.getElementById('metin').innerText = "Sonuçları "+ numbers;
+
+
+
+        document.getElementById("name").addEventListener("keyup",function(event){
+            console.log('Yazılan: '+event.target.value);
+        });
+
+        document.getElementById("name").addEventListener("mouseover",function(event){
+            this.style.backgroundColor = "red";
+        });
+        document.getElementById("name").addEventListener("mouseout",function(event){
+            this.style.backgroundColor = "white";
+        });
+
+        document.getElementById("form").addEventListener("submit",function(event){
+            event.preventDefault();
+            console.log('form durduruldu');
+        });
+
+        document.addEventListener("keydown", function(event) {
+            console.log("Basılan tuş: " + event.key);
+        });
+
     </script>
 </body>
 

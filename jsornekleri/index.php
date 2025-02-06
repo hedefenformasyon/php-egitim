@@ -18,6 +18,13 @@
         <input type="text" name="name">
         <button type="submit">Gönder</button>
     </form>
+
+
+    <p id="copy_text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil aliquid at porro totam perferendis consectetur libero culpa soluta sint. Nostrum aliquam reprehenderit possimus optio dignissimos in deserunt, deleniti sapiente aspernatur.</p>
+
+
+
+
     <script>
         let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -56,10 +63,15 @@
             console.log('form durduruldu');
         });
 
-        document.addEventListener("keydown", function(event) {
-            console.log("Basılan tuş: " + event.key);
-        });
+        function keypressClick(event){
+            alert("Basılan tuş: " + event.key);
+        }
+        document.addEventListener("keydown", keypressClick);
 
+
+        document.addEventListener('paste',function(event){
+            console.log('yapıştırılan içerik '+ event.clipboardData.getData("text"));
+        });
     </script>
 </body>
 

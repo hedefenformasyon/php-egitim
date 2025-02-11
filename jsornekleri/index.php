@@ -63,15 +63,150 @@
             console.log('form durduruldu');
         });
 
+/*
         function keypressClick(event){
             alert("Basılan tuş: " + event.key);
         }
         document.addEventListener("keydown", keypressClick);
-
+*/
 
         document.addEventListener('paste',function(event){
             console.log('yapıştırılan içerik '+ event.clipboardData.getData("text"));
         });
+
+
+        ////
+        /*
+        function islemBitti(){
+            console.log("İşlem tamamlandı.");
+        }
+        function islemBaslat(callback)
+        {
+            console.log("İşlem başladı....");
+            setTimeout(callback,3000);
+        }
+        islemBaslat(islemBitti);
+*/
+
+
+        ////
+        /*
+        function processUser(callback)
+        {
+            let user = {id: 1, name: "Enes"};
+            callback(user);
+        }
+        processUser(function(user){
+            console.log(user.name);
+        });
+*/
+
+        ////
+        
+        function processNumbers(a,b,geridon)
+        {
+            return geridon(a+b,a,b);
+        }
+        let result =  processNumbers(10,5,function(result,x,y){
+            return `${x} + ${y} = ${result}`;
+        });
+
+        console.log(result);
+
+
+
+        //async callback
+
+        function fetchData(callback){
+
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(callback({id:1, name:"Kırmızı"}));
+                }, 2000);
+            });
+        }
+
+        async function main(){
+
+            console.log("Renk adı belirleniyor....");
+            let response = await fetchData(function(renk){
+                return renk.name;
+            });
+            console.log("Renk adı "+response);
+        }
+
+        main();
+/*
+
+        function getData(callback){
+            setTimeout(() => {
+                let error = true;
+                let data = {id: 5, name: "Mehmet",surname:"Gören", age: 26};
+
+                if(error){
+                    callback("Veri alınamadı, hata var!",null);
+                }
+                else {
+                    callback(null,data);
+                }
+            }, 2000);
+        }
+
+        getData(function(msg,user){
+            if(msg){
+                console.error("Hata: "+msg);
+            }
+            else {
+                console.log("Kullanıcı : "+ user.name+" "+user.surname);
+            }
+        });
+*/
+        //XML REQUEST
+
+        function sendXMLRequest(callback){
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET","https://jsonplaceholder.typicode.com/users/1");
+            xhr.onload = function(){
+                if(xhr.status == 200)
+                {
+                    callback(JSON.parse(xhr.responseText));
+                }
+            };
+
+            xhr.send();
+        }
+
+        sendXMLRequest(function(user){
+            console.log("Kullanıcı adınız "+user.name);
+        });
+
+
+        //FETCH
+
+        fetch("https://jsonplaceholder.typicode.com/users/1")
+            .then(response => response.json())
+            .then(user => {
+                console.log("Fetch edildi, kullanıcı " + user.name+" "+user.email);
+            })
+            .catch(error => {
+                console.error(error.responseText);
+            });
+
+
+
+        async function getUser(user_id)
+        {
+            try {
+                let response = await fetch("https://jsonplaceholder.typicode.com/users/"+user_id);
+                let user = await response.json();
+                console.log(user);
+            } catch (error) {
+                console.error("Hata "+ error);
+            }
+        }
+        console.log("FETCH başladı");
+        getUser(2);
+        console.log("FETCH bitti");
     </script>
 </body>
 

@@ -207,6 +207,10 @@
         console.log("FETCH başladı");
         getUser(2);
         console.log("FETCH bitti");
+
+
+
+        
     </script>
 </body>
 
